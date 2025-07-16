@@ -66,10 +66,10 @@ Respond in JSON format exactly like this:
         new_title = parsed.get("title", "No Title Generated")
         steps = parsed.get("steps", [])
         new_description = "### Steps to Reproduce:\n" + "\n".join([f"{i+1}. {step}" for i, step in enumerate(steps)])
-
+        update_url = f"{JIRA_DOMAIN}/rest/api/3/issue/{issue_key}"
+        print("Updating Jira Issue at:", update_url)  # Add this line
         # Update Jira issue
-        update_resp = requests.put(
-            f"{JIRA_DOMAIN}/rest/api/3/issue/{issue_key}",
+        update_resp = requests.put(update_url,
             auth=(JIRA_USER_EMAIL, JIRA_API_TOKEN),
             headers={"Content-Type": "application/json"},
             json={
