@@ -15,10 +15,14 @@ JIRA_DOMAIN = os.getenv("JIRA_DOMAIN")
 @app.route("/jira-webhook", methods=["POST"])
 def jira_webhook():
     data = request.json
+    print("Received payload:", data)  # <--- This line logs the JSON payload
+
+    if not data:
+        return jsonify({"status": "error", "message": "No JSON payload received"}), 400
 
     try:
-        issue_key = data.get("key")
-        description = data.get("description", "")
+        issue_key = data["issue"]["key"]
+        description = data["issue"]["fields"].get("description", "")
 
         if not issue_key:
             return jsonify({"status": "error", "message": "Missing issue key"}), 400
