@@ -17,8 +17,12 @@ def jira_webhook():
     data = request.json
 
     try:
-        issue_key = data["issue"]["key"]
-        description = data["issue"]["fields"].get("description", "")
+        issue_key = data.get("key")
+        description = data.get("description", "")
+
+        if not issue_key:
+            return jsonify({"status": "error", "message": "Missing issue key"}), 400
+
 
         # Prepare prompt for OpenAI
         prompt = f"""Extract a clean, clear Jira ticket title and steps to reproduce from the following description:
