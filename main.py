@@ -21,8 +21,11 @@ def jira_webhook():
         return jsonify({"status": "error", "message": "No JSON payload received"}), 400
 
     try:
-        issue_key = data["issue"]["key"]
-        description = data["issue"]["fields"].get("description", "")
+        issue = data.get("issue")
+        if not issue or "key" not in issue:
+            return jsonify({"status": "error", "message": "Missing issue or issue key"}), 400
+        issue_key = issue["key"]
+        description = issue["fields"].get("description", "")
 
         if not issue_key:
             return jsonify({"status": "error", "message": "Missing issue key"}), 400
