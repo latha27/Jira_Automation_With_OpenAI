@@ -58,6 +58,9 @@ Respond in JSON format exactly like this:
             }
         )
 
+        print("OpenAI status code:", openai_resp.status_code)
+        print("OpenAI response:", openai_resp.text)
+
         openai_resp.raise_for_status()
         openai_content = openai_resp.json()["choices"][0]["message"]["content"]
 
