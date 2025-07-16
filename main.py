@@ -25,7 +25,11 @@ def jira_webhook():
         if not issue or "key" not in issue:
             return jsonify({"status": "error", "message": "Missing issue or issue key"}), 400
         issue_key = issue["key"]
+        print("Issue key:", issue_key)
         description = issue["fields"].get("description", "")
+        print("Description:", description)
+        if not description:
+            return jsonify({"status": "skipped", "message": "Empty description. Skipping OpenAI call."}), 200
 
         if not issue_key:
             return jsonify({"status": "error", "message": "Missing issue key"}), 400
