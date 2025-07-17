@@ -96,10 +96,13 @@ Respond in JSON format exactly like this:
         update_resp = requests.put(update_url,
                                    headers=headers,
                                    json={
-                "update": {
-                    "summary": new_title,
-                    "description": new_description
-                }
+                                       "update": {
+                                           "summary": [
+                                               {
+                                                   "set": "Bug in business logic - Latha Testing"
+                                               }
+                                           ]
+                                       }
             }
                                    )
         print("Jira status code:", update_resp.status_code)
