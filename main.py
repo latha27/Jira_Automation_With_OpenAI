@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import requests
 import os
 import json
+import base64
 
 app = Flask(__name__)
 
@@ -10,7 +11,6 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 JIRA_API_TOKEN = os.getenv("JIRA_API_TOKEN ")
 JIRA_USER_EMAIL = os.getenv("JIRA_USER_EMAIL")
 JIRA_DOMAIN = os.getenv("JIRA_DOMAIN")
-BASE64 = os.getenv("BASE64")
 
 
 @app.route("/jira-webhook", methods=["POST"])
@@ -74,12 +74,22 @@ Respond in JSON format exactly like this:
         new_title = parsed.get("title", "No Title Generated")
         steps = parsed.get("steps", [])
         new_description = "### Steps to Reproduce:\n" + "\n".join([f"{i+1}. {step}" for i, step in enumerate(steps)])
+
+        # Encode Jira credentials
+        credentials = f"{JIRA_USER_EMAIL}:{JIRA_API_TOKEN}"
+        encoded_token = base64.b64encode(credentials.encode()).decode()
+
+        # Prepare headers
+        headers = {
+            "Authorization": f"Basic {encoded_token}",
+            "Content-Type": "application/json"
+        }
+
         update_url = f"{JIRA_DOMAIN}/rest/api/3/issue/{issue_key}"
         print("Updating Jira Issue at:", update_url)  # Add this line
         # Update Jira issue
         update_resp = requests.put(update_url,
-                                   auth=BASE64,
-                                   headers={"Content-Type": "application/json"},
+                                   headers=headers,
                                    json={
                 "fields": {
                     "summary": new_title,
@@ -87,6 +97,8 @@ Respond in JSON format exactly like this:
                 }
             }
                                    )
+        print("Jira status code:", update_resp.status_code)
+        print("Jira response:", update_resp.text)
         update_resp.raise_for_status()
         return jsonify({"status": "success", "jira_response": update_resp.json()})
 
