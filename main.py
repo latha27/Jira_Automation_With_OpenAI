@@ -101,14 +101,19 @@ Respond in JSON format exactly like this:
                                                {
                                                    "set": "Bug in business logic - Latha Testing"
                                                }
+
                                            ]
                                        }
-            }
+                                      }
                                    )
         print("Jira status code:", update_resp.status_code)
         print("Jira response:", update_resp.text)
         update_resp.raise_for_status()
-        return jsonify({"status": "success", "jira_response": update_resp.json()})
+        if update_resp.status_code == 204 or not update_resp.text.strip():
+            jira_response = {"message": "Issue updated successfully. (No content returned from Jira)"}
+        else:
+            jira_response = update_resp.json()
+        return jsonify({"status": "success", "jira_response": jira_response})
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
