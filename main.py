@@ -12,6 +12,8 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 JIRA_API_TOKEN = os.getenv("JIRA_API_TOKEN ")
 JIRA_USER_EMAIL = os.getenv("JIRA_USER_EMAIL")
 JIRA_DOMAIN = os.getenv("JIRA_DOMAIN")
+print(JIRA_USER_EMAIL)
+print(JIRA_API_TOKEN)
 
 
 @app.route("/jira-webhook", methods=["POST"])
@@ -78,8 +80,9 @@ Respond in JSON format exactly like this:
 
         # Encode Jira credentials
         credentials = f"{JIRA_USER_EMAIL}:{JIRA_API_TOKEN}"
+        print("cred:", credentials)
         encoded_token = base64.b64encode(credentials.encode())
-        logging.info(encoded_token)
+        print("base 64:", encoded_token)
 
         # Prepare headers
         headers = {
