@@ -86,13 +86,13 @@ Respond in JSON format exactly like this:
             "Content-Type": "application/json"
         }
 
-        update_url = f"{JIRA_DOMAIN}/rest/api/3/issue/{issue_key}"
+        update_url = f"{JIRA_DOMAIN}/rest/api/2/issue/{issue_key}"
         print("Updating Jira Issue at:", update_url)  # Add this line
         # Update Jira issue
         update_resp = requests.put(update_url,
                                    headers=headers,
                                    json={
-                "fields": {
+                "update": {
                     "summary": new_title,
                     "description": new_description
                 }
