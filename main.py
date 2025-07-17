@@ -3,6 +3,7 @@ import requests
 import os
 import json
 import base64
+import logging
 
 app = Flask(__name__)
 
@@ -77,8 +78,8 @@ Respond in JSON format exactly like this:
 
         # Encode Jira credentials
         credentials = f"{JIRA_USER_EMAIL}:{JIRA_API_TOKEN}"
-        encoded_token = base64.b64encode(credentials.encode()).decode()
-        print("base64:", encoded_token)
+        encoded_token = base64.b64encode(credentials.encode())
+        logging.info(encoded_token)
 
         # Prepare headers
         headers = {
