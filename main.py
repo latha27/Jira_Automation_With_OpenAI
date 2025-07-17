@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # Replace with your actual credentials
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-JIRA_API_TOKEN = os.getenv("JIRA_API_TOKEN ")
+JIRA_API_TOKEN = os.getenv("JIRA_API_TOKEN")
 JIRA_USER_EMAIL = os.getenv("JIRA_USER_EMAIL")
 JIRA_DOMAIN = os.getenv("JIRA_DOMAIN")
 print(JIRA_USER_EMAIL)
