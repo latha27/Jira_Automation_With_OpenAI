@@ -10,6 +10,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 JIRA_API_TOKEN = os.getenv("JIRA_API_TOKEN ")
 JIRA_USER_EMAIL = os.getenv("JIRA_USER_EMAIL")
 JIRA_DOMAIN = os.getenv("JIRA_DOMAIN")
+BASE64 = os.getenv("BASE64")
 
 
 @app.route("/jira-webhook", methods=["POST"])
@@ -77,17 +78,16 @@ Respond in JSON format exactly like this:
         print("Updating Jira Issue at:", update_url)  # Add this line
         # Update Jira issue
         update_resp = requests.put(update_url,
-            auth=(JIRA_USER_EMAIL, JIRA_API_TOKEN),
-            headers={"Content-Type": "application/json"},
-            json={
+                                   auth=BASE64,
+                                   headers={"Content-Type": "application/json"},
+                                   json={
                 "fields": {
                     "summary": new_title,
                     "description": new_description
                 }
             }
-        )
+                                   )
         update_resp.raise_for_status()
-
         return jsonify({"status": "success", "jira_response": update_resp.json()})
 
     except Exception as e:
