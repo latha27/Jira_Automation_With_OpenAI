@@ -96,7 +96,7 @@ Respond in JSON format exactly like this:
         update_resp = requests.put(update_url,
                                    headers=headers,
                                    json={
-                "fields": {
+                "update": {
                     "summary": new_title,
                     "description": new_description
                 }
