@@ -81,7 +81,7 @@ Respond in JSON format exactly like this:
         # Encode Jira credentials
         credentials = f"{JIRA_USER_EMAIL}:{JIRA_API_TOKEN}"
         print("cred:", credentials)
-        encoded_token = base64.b64encode(credentials.encode())
+        encoded_token = base64.b64encode(credentials.encode()).decode()
         print("base 64:", encoded_token)
 
         # Prepare headers
