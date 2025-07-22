@@ -57,7 +57,7 @@ Original user input:
 Respond in JSON format:
 {{
   "title": "<Improved title>",
-  "steps": ["Step 1","Step 2","Step 3","Step 4","...."]
+  "description": "### Summary:\\n<summary>\\n\\n### Steps to Reproduce:\\n1. <step>\\n2. <step>\\n...\\n\\n### Expected Result:\\n<expected>\\n\\n### Actual Result:\\n<actual>"
 }}"""
 
         # Call OpenAI Chat Completion API
@@ -83,8 +83,7 @@ Respond in JSON format:
         # Parse OpenAI JSON response
         parsed = json.loads(openai_content)
         new_title = parsed.get("title", "No Title Generated")
-        steps = parsed.get("steps", [])
-        new_description = "### Steps to Reproduce:\n" + "\n".join([f"{i+1}. {step}" for i, step in enumerate(steps)])
+        new_description = parsed.get("description", "No Description Provided")
 
         # Encode Jira credentials
         credentials = f"{JIRA_USER_EMAIL}:{JIRA_API_TOKEN}"
