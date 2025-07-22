@@ -103,6 +103,11 @@ Respond in JSON format exactly like this:
                                                }
 
                                            ]
+                                       },
+                                       "description": "From the order testing process",
+                                       "extraData": {
+                                           "Iteration": "10a",
+                                           "Step": "4"
                                        }
                                       }
                                    )
