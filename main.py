@@ -40,16 +40,26 @@ def jira_webhook():
 
 
         # Prepare prompt for OpenAI
-        prompt = f"""Extract a clean, clear Jira ticket title and steps to reproduce from the following description:
+        prompt = f"""You are a technical writer helping document Jira issues.
+        Given the following user-written Jira description, extract:
+        1. A clear, concise title summarizing the problem.
+        2. A complete, detailed list of steps to reproduce the issue, written as if someone unfamiliar with the system needs to follow them exactly.
+
+
+Here is the original description:
 
 \"\"\"
 {description}
 \"\"\"
 
-Respond in JSON format exactly like this:
+Respond in JSON format:
 {{
   "title": "<Improved title>",
-  "steps": ["Step 1", "Step 2", "..."]
+  "steps": [
+    "Step 1: ...",
+    "Step 2, ...",
+    "Step 3, ..."
+    ]
 }}"""
 
         # Call OpenAI Chat Completion API
