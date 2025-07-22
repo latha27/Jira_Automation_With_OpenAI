@@ -55,15 +55,7 @@ Here is the original description:
 Respond in JSON format:
 {{
   "title": "<Improved title>",
-  "steps": [
-    ": ...",
-    ": ...",
-    ": ...",
-    ": ...",
-    ": ...",
-    ": ...",
-    ": ..."
-    ]
+  "steps": ["Step 1","Step 2","Step 3","Step 4","...."]
 }}"""
 
         # Call OpenAI Chat Completion API
