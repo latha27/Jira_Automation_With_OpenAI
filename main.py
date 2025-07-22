@@ -99,7 +99,7 @@ Respond in JSON format exactly like this:
                                        "update": {
                                            "summary": [
                                                {
-                                                   "set": "Bug in business logic - Latha Testing"
+                                                   "set": new_title
                                                }
 
                                            ]
