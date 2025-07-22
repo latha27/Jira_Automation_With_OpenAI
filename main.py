@@ -40,15 +40,17 @@ def jira_webhook():
 
 
         # Prepare prompt for OpenAI
-        prompt = f"""You are an expert Jira documentation assistant.
-        
-        Take the following user-written bug report and do two things:
-        1. Write a clear, professional Jira ticket title describing the issue.
-        2. Write a detailed step-by-step description in markdown, including:
-                   - A summary of the issue
-                   - Step-by-step reproduction steps, written fully
-                   - Expected vs. actual results
-Original user input:
+        prompt = f"""You are an experienced Jira assistant helping to write high-quality, detailed issue reports.
+                     Given the following user-written bug report, your task is to:
+                        1. Create a professional Jira issue title.
+                        2. Write a detailed description including:
+                                    - A clear summary of the issue
+                                    - Fully detailed step-by-step reproduction steps
+                                    - Specific form fields (e.g. project name, owner, description) where relevant
+                                    - Expected and actual results
+
+If the user did not specify exact field names, you may intelligently infer commonly required fields in enterprise applications.
+Input:
 
 \"\"\"
 {description}
