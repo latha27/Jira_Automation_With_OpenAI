@@ -96,20 +96,25 @@ Respond in JSON format exactly like this:
         update_resp = requests.put(update_url,
                                    headers=headers,
                                    json={
-                                       "update": {
-                                           "summary": [
-                                               {
-                                                   "set": new_title
-                                               }
-
-                                           ]
-                                       },
-                                       "description": "From the order testing process",
-                                       "extraData": {
-                                           "Iteration": "10a",
-                                           "Step": "4"
-                                       }
-                                      }
+        "fields": {
+            "summary": new_title,
+            "description": {
+                "type": "doc",
+                "version": 1,
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": new_description
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
                                    )
         print("Jira status code:", update_resp.status_code)
         print("Jira response:", update_resp.text)
