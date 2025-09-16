@@ -1,0 +1,21 @@
+2025-09-16 13:40:53,552 [INFO] Starting Flask server on port 8000
+2025-09-16 13:40:53,566 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://10.3.0.233:8000
+2025-09-16 13:40:53,566 [INFO] [33mPress CTRL+C to quit[0m
+2025-09-16 13:42:45,185 [INFO] Running in CLI mode
+2025-09-16 13:42:45,466 [ERROR] OpenAI API request failed: 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+2025-09-16 13:42:46,716 [ERROR] OpenAI API request failed: 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+2025-09-16 13:42:48,978 [ERROR] OpenAI API request failed: 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+2025-09-16 13:42:53,252 [ERROR] OpenAI API request failed: 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+2025-09-16 13:43:01,504 [ERROR] OpenAI API request failed: 401 Client Error: Unauthorized for url: https://api.openai.com/v1/chat/completions
+2025-09-16 13:43:09,172 [INFO] Starting Flask server on port 8000
+2025-09-16 13:43:09,180 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://10.3.0.233:8000
+2025-09-16 13:43:09,180 [INFO] [33mPress CTRL+C to quit[0m
+2025-09-16 13:43:19,710 [INFO] Running in CLI mode
+2025-09-16 13:43:22,550 [INFO] OpenAI API call successful
+2025-09-16 13:43:22,550 [INFO] OpenAI report parsed successfully
